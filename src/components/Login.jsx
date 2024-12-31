@@ -32,7 +32,7 @@ function Login() {
                 <div className="mb-6 flex justify-center">
                     <Logo width="80px" />
                 </div>
-                <h2 className="text-center text-3xl font-semibold text-gray-900">Sign in to your account</h2>
+                <h2 className="text-center text-3xl font-semibold text-gray-900">Login to your account</h2>
                 <p className="mt-2 text-center text-sm text-gray-500">
                     Don&apos;t have an account?&nbsp;
                     <Link

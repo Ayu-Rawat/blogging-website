@@ -33,10 +33,9 @@ export default function RTE({ name, control, label, defaultValue = "" }) {
                 "media",
                 "table",
                 "wordcount",
-                "textcolor", 
               ],
               toolbar:
-                "undo redo | bold italic forecolor | fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist | removeformat",
+                "undo redo | bold italic forecolor |alignleft aligncenter alignright alignjustify | bullist numlist | removeformat",
               content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
               font_formats: "Arial=arial,helvetica,sans-serif;Verdana=verdana,geneva;Times New Roman=times new roman,times;Courier New=courier new,courier;Comic Sans MS=comic sans ms,sans-serif;", // Custom font options
             }}
