@@ -1,12 +1,6 @@
 @media (max-width: 640px) {
-.allPost div {
-    padding: 0.5rem;
-    width: 100%;
-    }
-.allPost {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    .allPost div {
+        padding: 0.5rem;
+        width: 100%;
     }
 }
-
