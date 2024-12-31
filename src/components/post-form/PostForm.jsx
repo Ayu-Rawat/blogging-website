@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input, RTE, Select } from "..";
 import appwriteService from "../../appwrite/config";
@@ -15,37 +15,48 @@ export default function PostForm({ post }) {
         },
     });
 
+    const [loading, setLoading] = useState(false);  // Loading state
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
 
     const submit = async (data) => {
-        if (post) {
-            const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
+        setLoading(true);  // Set loading to true when submission starts
 
-            if (file) {
-                appwriteService.deleteFile(post.featuredImage);
-            }
+        try {
+            let file;
 
-            const dbPost = await appwriteService.updatePost(post.$id, {
-                ...data,
-                featuredImage: file ? file.$id : undefined,
-            });
+            if (post) {
+                file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
 
-            if (dbPost) {
-                navigate(`/post/${dbPost.$id}`);
-            }
-        } else {
-            const file = await appwriteService.uploadFile(data.image[0]);
+                if (file) {
+                    appwriteService.deleteFile(post.featuredImage);
+                }
 
-            if (file) {
-                const fileId = file.$id;
-                data.featuredImage = fileId;
-                const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id });
+                const dbPost = await appwriteService.updatePost(post.$id, {
+                    ...data,
+                    featuredImage: file ? file.$id : undefined,
+                });
 
                 if (dbPost) {
                     navigate(`/post/${dbPost.$id}`);
                 }
+            } else {
+                file = await appwriteService.uploadFile(data.image[0]);
+
+                if (file) {
+                    const fileId = file.$id;
+                    data.featuredImage = fileId;
+                    const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id });
+
+                    if (dbPost) {
+                        navigate(`/post/${dbPost.$id}`);
+                    }
+                }
             }
+        } catch (error) {
+            console.error("Error during post submission:", error);
+        } finally {
+            setLoading(false);  // Set loading to false after submission is complete
         }
     };
 
@@ -114,9 +125,17 @@ export default function PostForm({ post }) {
                     {...register("status", { required: true })}
                 />
                 <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
-                    {post ? "Update" : "Submit"}
+                    {loading ? (
+                        <span>Loading...</span>  // Show "Loading..." text or you can use a spinner here
+                    ) : post ? (
+                        "Update"
+                    ) : (
+                        "Submit"
+                    )}
                 </Button>
             </div>
         </form>
     );
 }
+
+
