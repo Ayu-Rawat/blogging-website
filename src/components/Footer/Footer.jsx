@@ -7,7 +7,6 @@ function Footer() {
     <footer className="py-6 bg-[#161b22] text-[#c9d1d9]">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center">
-          <Logo width="80px" />
           <p className="mt-4 text-sm">
             &copy; 2024. Made for fun by{' '}
             <a
