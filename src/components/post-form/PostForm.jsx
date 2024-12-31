@@ -4,6 +4,7 @@ import { Button, Input, RTE, Select } from "..";
 import appwriteService from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import './postForm.css'
 
 export default function PostForm({ post }) {
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
@@ -15,7 +16,7 @@ export default function PostForm({ post }) {
         },
     });
 
-    const [loading, setLoading] = useState(false);  // Loading state
+    const [loading, setLoading] = useState(false); 
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
 
@@ -56,7 +57,7 @@ export default function PostForm({ post }) {
         } catch (error) {
             console.error("Error during post submission:", error);
         } finally {
-            setLoading(false);  // Set loading to false after submission is complete
+            setLoading(false); 
         }
     };
 
@@ -82,7 +83,7 @@ export default function PostForm({ post }) {
     }, [watch, slugTransform, setValue]);
 
     return (
-        <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
+        <form onSubmit={handleSubmit(submit)} className="flex flex-wrap postForm">
             <div className="w-2/3 px-2">
                 <Input
                     label="Title :"
@@ -91,8 +92,9 @@ export default function PostForm({ post }) {
                     {...register("title", { required: true })}
                 />
                 <Input
-                    label="Slug :"
+
                     placeholder="Slug"
+                    type="hidden"
                     className="mb-4"
                     {...register("slug", { required: true })}
                     onInput={(e) => {
@@ -118,15 +120,9 @@ export default function PostForm({ post }) {
                         />
                     </div>
                 )}
-                <Select
-                    options={["active", "inactive"]}
-                    label="Status"
-                    className="mb-4"
-                    {...register("status", { required: true })}
-                />
-                <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
+                <Button type="submit" disabled={loading} bgColor={post ? "bg-green-500" : undefined} className="w-full">
                     {loading ? (
-                        <span>Loading...</span>  // Show "Loading..." text or you can use a spinner here
+                        <span>Loading...</span> 
                     ) : post ? (
                         "Update"
                     ) : (

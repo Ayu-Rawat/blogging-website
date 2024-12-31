@@ -1,0 +1,7 @@
+@media (max-width: 640px) {
+    .postForm div{
+        width: 100%;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
