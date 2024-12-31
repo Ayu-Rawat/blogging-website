@@ -30,11 +30,7 @@ function Signup() {
         <div className="flex items-center justify-center min-h-screen bg-gray-900">
             <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
                 <div className="mb-6 flex justify-center">
-                    <div className="flex items-center justify-center">
-                        <div className="text-xl font-bold text-blue-600" style={{ width }}>
-                            <img src=".././Images/pngegg.png" alt="logo" />
-                        </div>
-                    </div>
+                    <Logo width="80px" />
                 </div>
                 <h2 className="text-center text-3xl font-semibold text-gray-900">Sign up to create an account</h2>
                 <p className="mt-2 text-center text-sm text-gray-500">

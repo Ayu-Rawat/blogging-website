@@ -4,7 +4,7 @@ function Logo({ width = '80px' }) {
     return (
         <div className="flex items-center justify-center">
             <div className="text-xl font-bold text-blue-600" style={{ width }}>
-                <img src=".././Images/pngegg.png" alt="logo" />
+                <img src=".././Images/logo.png" alt="logo" />
             </div>
         </div>
     );
