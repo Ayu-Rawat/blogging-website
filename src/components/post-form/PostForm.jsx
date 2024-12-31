@@ -92,7 +92,6 @@ export default function PostForm({ post }) {
                     {...register("title", { required: true })}
                 />
                 <Input
-
                     placeholder="Slug"
                     type="hidden"
                     className="mb-4"
