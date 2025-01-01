@@ -9,6 +9,8 @@ export default function Post() {
     const [post, setPost] = useState(null);
     const { slug } = useParams();
     const navigate = useNavigate();
+    const [isVideo, setIsVideo] = useState(false);
+    const [fileUrl, setFileUrl] = useState('');
 
     const userData = useSelector((state) => state.auth.userData);
 
@@ -32,15 +34,44 @@ export default function Post() {
         });
     };
 
+    useEffect(() => {
+        if (post && post.featuredImage) {
+            async function fetchFileData() {
+                try {
+                    const metadata = await appwriteService.getFileMetadata(post.featuredImage);
+                    if (metadata && metadata.mimeType.startsWith('video')) {
+                        setIsVideo(true);
+                        setFileUrl(appwriteService.getFileView(post.featuredImage)); 
+                    } else {
+                        setFileUrl(appwriteService.getFilePreview(post.featuredImage));
+                    }
+                } catch (error) {
+                    console.error("Error fetching file data:", error);
+                }
+            }
+
+            fetchFileData();
+        }
+    }, [post]);
+
     return post ? (
         <div className="py-8">
             <Container>
                 <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
-                <img
-                src={appwriteService.getFilePreview(post.featuredImage)}
-                alt={post.title}
-                className="rounded-xl w-3/4 h-3/4 mx-auto"
-                />
+                    {isVideo ? (
+                        <video
+                            controls
+                            className="rounded-xl w-3/4 h-3/4 mx-auto"
+                            src={fileUrl}
+                        >
+                            Your browser does not support the video tag.
+                        </video>
+                    ) : (
+                        <img
+                            src={fileUrl}
+                            className="rounded-xl w-3/4 h-3/4 mx-auto"
+                        />
+                    )}
 
                     {isAuthor && (
                         <div className="absolute right-6 top-6">
@@ -60,7 +91,7 @@ export default function Post() {
                 </div>
                 <div className="browser-css">
                     {parse(post.content)}
-                    </div>
+                </div>
             </Container>
         </div>
     ) : null;
