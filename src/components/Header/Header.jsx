@@ -46,9 +46,6 @@ function Header() {
       <Container>
         <nav className='flex items-center '>
           <div className='mr-4'>
-            <Link to='/'>
-              <Logo width='84px'/>
-            </Link>
           </div>
           <ul className='flex ml-auto space-x-4'>
             {navItems.map((item) => 
