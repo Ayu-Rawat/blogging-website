@@ -1,16 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Logo from '../Logo';
 
 function Footer() {
+  const date = new Date();
+  const year = date.getFullYear();
   return (
-    <footer className="py-6 bg-[#161b22] text-[#c9d1d9]">
+    <footer className="py-6 bg-[#0a0a0a] text-[#c9d1d9]">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center">
           <p className="mt-4 text-sm">
-            &copy; 2024. Made for fun by{' '}
+            &copy; {year}. Made for fun by{' '}
             <a
-              href="https://www.linkedin.com/in/ayush-rawat-480537307/"
+              href="linkdin.ayush.it"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#58a6ff] hover:text-[#6ea9ff] transition-colors duration-200"
@@ -24,26 +24,26 @@ function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm hover:text-white transition-colors duration-200"
-              href="https://github.com/Ayu-Rawat"
+              href="github.ayush.it"
               >
                 Github
               </a>
             </li>
             <li>
-              <Link
+              <a
                 className="text-sm hover:text-white transition-colors duration-200"
-                to="/"
+                href='instagram.ayush.it'
               >
-                Pricing
-              </Link>
+                Instagram
+              </a>
             </li>
             <li>
-              <Link
+              <a
                 className="text-sm hover:text-white transition-colors duration-200"
-                to="/"
+                href='https://github.com/Ayu-Rawat/blogging-website'
               >
-                Contact
-              </Link>
+                Source Code
+              </a>
             </li>
           </ul>
         </div>

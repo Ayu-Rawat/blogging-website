@@ -27,12 +27,9 @@ function Login() {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-900">
-            <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
-                <div className="mb-6 flex justify-center">
-                    <Logo width="80px" />
-                </div>
-                <h2 className="text-center text-3xl font-semibold text-gray-900">Login to your account</h2>
+        <div className="flex justify-center  bg-[#000000]">
+            <div className="w-full max-w-md p-8 ">
+                <h2 className="text-center text-3xl font-semibold text-[#ffffff]">Login to your account</h2>
                 <p className="mt-2 text-center text-sm text-gray-500">
                     Don&apos;t have an account?&nbsp;
                     <Link

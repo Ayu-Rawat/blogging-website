@@ -23,7 +23,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0d1117] text-[#c9d1d9]">
+    <div className="min-h-screen flex flex-col bg-[#000000] text-[#c9d1d9]">
       {loading ? (
         <div className="flex items-center justify-center h-screen">
           <div className="w-16 h-16 border-4 border-[#58a6ff] border-dashed rounded-full animate-spin"></div>

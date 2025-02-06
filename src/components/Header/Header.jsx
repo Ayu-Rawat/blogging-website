@@ -37,9 +37,9 @@ function Header() {
   ];
 
   return (
-    <header className='py-3 shadow bg-[#161b22]'>
+    <header className='py-3 shadow bg-[#0a0a0a]'>
       <Container>
-        <nav className='flex items-center'>
+        <nav className='flex items-center '>
           <div className='mr-4'>
             <Link to='/'>
               <Logo width='70px' />

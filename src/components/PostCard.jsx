@@ -25,11 +25,12 @@ function PostCard({ $id, title, featuredImage }) {
     }, [featuredImage]);
 
     return (
-        <Link
-            to={`/post/${$id}`}
-            className="block w-full max-w-sm mx-auto bg-white rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105"
+    <Link
+        to={`/post/${$id}`}
+        className="block w-full max-w-sm mx-auto bg-[#0a0a0a] border-[0.5px] border-[#8f8f8f]  rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105"
         >
-            <div className="w-full bg-gray-100">
+
+            <div className="w-full bg-[#0a0a0a] p-2">
                 {isVideo ? (
                     <video
                         controls
@@ -47,9 +48,11 @@ function PostCard({ $id, title, featuredImage }) {
                 )}
             </div>
             <div className="p-4">
-                <h2 className="text-lg font-semibold text-gray-800">{title}</h2>
+                <h2 className="text-lg font-semibold text-[#ffffff]">
+                    {title.length > 10 ? title.slice(0, 10) + "..." : title}
+                </h2>
             </div>
-    </Link>
+        </Link>
     );
 }
 

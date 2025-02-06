@@ -17,26 +17,31 @@ function Home() {
 
     if (posts.length === 0) {
         return (
-            <div className="w-full py-8 mt-4 h-full">
-                <Container>
-                    <div className="flex flex-wrap justify-center items-center">
-                        <div className="p-4 w-full max-w-md bg-[#2d333b] rounded-lg shadow-lg">
-                            <h1 className="text-2xl font-bold text-white mb-4">
-                                Want to read posts? Please log in!
-                            </h1>
-                            <p className="text-sm text-gray-400 mb-4">
-                                Log in to access all the posts and content available on our platform.
-                            </p>
-                            <Link
-                                to="/login"
-                                className="inline-block px-6 py-2 bg-[#58a6ff] text-white rounded-lg hover:bg-[#6ea9ff] transition-colors duration-200"
-                            >
-                                Log In
-                            </Link>
-                        </div>
-                    </div>
-                </Container>
+            <div className="w-full  bg-[#000000] text-white">
+            {/* Hero Section */}
+            <div className="flex flex-col items-center justify-center text-center py-16 px-6">
+                <h1 className="text-4xl font-bold mb-4">
+                    Welcome to <span className="text-[#58a6ff]">Blog It</span>
+                </h1>
+                <p className="text-lg text-gray-400 max-w-xl">
+                Log in to access all the posts and content available on our platform.
+                </p>
+                <div className="mt-6 flex gap-4">
+                    <Link 
+                        to="/login"
+                        className="px-6 py-3 bg-[#58a6ff] text-white rounded-lg hover:bg-[#6ea9ff] transition duration-200"
+                    >
+                        Log In
+                    </Link>
+                    <Link 
+                        to="/signup"
+                        className="px-6 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition duration-200"
+                    >
+                        Sign Up
+                    </Link>
+                </div>
             </div>
+        </div>
         );
     }
 
