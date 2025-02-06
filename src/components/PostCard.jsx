@@ -25,12 +25,18 @@ function PostCard({ $id, title, featuredImage }) {
     }, [featuredImage]);
 
     return (
-        <Link
+        <CardContainer className="inter-var">
+            <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border">
+            <Link
             to={`/post/${$id}`}
             className="block w-full max-w-sm mx-auto bg-white rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105"
         >
             <div className="w-full bg-gray-100">
                 {isVideo ? (
+                    <CardItem
+                    translateZ={100}
+                    className="w-full h-48"
+                    >
                     <video
                         controls
                         className="w-full h-48 object-cover"
@@ -38,18 +44,26 @@ function PostCard({ $id, title, featuredImage }) {
                     >
                         Your browser does not support the video tag.
                     </video>
+                    </CardItem>
                 ) : (
+                    <CardItem
+                    translateZ={100}
+                    className="w-full h-48"
+                    >
                     <img
                         src={fileUrl}
                         alt={title}
                         className="w-full h-48 object-cover"
                     />
+                    </CardItem>
                 )}
             </div>
             <div className="p-4">
                 <h2 className="text-lg font-semibold text-gray-800">{title}</h2>
             </div>
         </Link>
+        </CardBody>
+        </CardContainer>
     );
 }
 
