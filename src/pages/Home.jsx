@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import appwriteService from "../appwrite/config";
-import { Container, PostCard } from '../components';
+import { Container, Logo, PostCard } from '../components';
 import { Link } from 'react-router-dom';
 import './allPost.css'
 
@@ -18,7 +18,6 @@ function Home() {
     if (posts.length === 0) {
         return (
             <div className="w-full  bg-[#000000] text-white">
-            {/* Hero Section */}
             <div className="flex flex-col items-center justify-center text-center py-16 px-6">
                 <h1 className="text-4xl font-bold mb-4">
                     Welcome to <span className="text-[#58a6ff]">Blog It</span>

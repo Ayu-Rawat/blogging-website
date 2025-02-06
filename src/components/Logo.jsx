@@ -1,11 +1,9 @@
 import React from 'react';
 
-function Logo({ width = '80px' }) {
+function Logo({ width = '80px',className="" }) {
     return (
-        <div className="flex items-center justify-center">
-            <div className="text-xl font-bold text-blue-600" style={{ width }}>
-                <img src="../images/logo.png" alt="logo" />
-            </div>
+        <div className={{className}} style={{ width }}>
+            <img src="../images/logo.png" alt="logo" />
         </div>
     );
 }
