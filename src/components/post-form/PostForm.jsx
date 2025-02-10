@@ -104,19 +104,27 @@ export default function PostForm({ post }) {
             </div>
             <div className="w-1/3 px-2">
                 <Input
-                    label="Featured Image :"
+                    label="Featured Image or Video :"
                     type="file"
                     className="mb-4"
-                    accept="image/png, image/jpg, image/jpeg, image/gif"
+                    accept="image/png, image/jpg, image/jpeg, image/gif, video/mp4, video/webm, video/ogg"
                     {...register("image", { required: !post })}
                 />
                 {post && (
                     <div className="w-full mb-4">
-                        <img
-                            src={appwriteService.getFilePreview(post.featuredImage)}
-                            alt={post.title}
-                            className="rounded-lg"
-                        />
+                        {post.featuredImage && (
+                            <img
+                                src={appwriteService.getFilePreview(post.featuredImage)}
+                                alt={post.title}
+                                className="rounded-lg"
+                            />
+                        )}
+                        {post.featuredVideo && (
+                            <video controls className="rounded-lg">
+                                <source src={appwriteService.getFilePreview(post.featuredVideo)} type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                        )}
                     </div>
                 )}
                 <Button type="submit" disabled={loading} bgColor={post ? "bg-green-500" : undefined} className="w-full">
