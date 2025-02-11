@@ -12,6 +12,8 @@ import PostCard from "./PostCard";
 import AuthLayout from "./AuthLayout";
 import Input from "./Input";
 import Logo from "./Logo";
+import NotFound from "./NoPostFound";
+import { Loader } from "./Loader";
 
 export {
     Header,
@@ -28,4 +30,6 @@ export {
     Input,
     Select,
     Logo,
+    NotFound,
+    Loader
 }

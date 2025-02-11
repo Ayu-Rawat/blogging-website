@@ -9,8 +9,7 @@ import Home from './pages/Home.jsx'
 import { AuthLayout, Login } from './components/index.js'
 import Working from './pages/Working.jsx'
 import NotFound from './pages/PageNotFound.jsx'
-
-
+import YourPosts from './pages/Yourpost.jsx'
 import AddPost from "./pages/AddPost";
 import Signup from './pages/Signup'
 import EditPost from "./pages/EditPost";
@@ -49,7 +48,7 @@ const router = createBrowserRouter([
             element: (
                 <AuthLayout authentication>
                     {" "}
-                    <Working />
+                    <YourPosts />
                 </AuthLayout>
             ),
         },

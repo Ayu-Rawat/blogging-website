@@ -91,6 +91,21 @@ export class Service {
         }
     }
 
+    async getYourPosts(queries) {
+        try {
+            return await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
+                [
+                    Query.equal("userId",queries)
+                ]
+            );
+        } catch (error) {
+            console.log("Appwrite service :: getYourPosts :: error", error);
+            return false;
+        }
+    }
+
     async uploadFile(file) {
         try {
             return await this.bucket.createFile(
