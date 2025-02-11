@@ -10,7 +10,7 @@ function Footer() {
           <p className="mt-4 text-sm">
             &copy; {year}. Made for fun by{' '}
             <a
-              href="linkdin.ayush.it"
+              href="https://www.linkedin.com/in/ayush-rawat-480537307/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#58a6ff] hover:text-[#6ea9ff] transition-colors duration-200"
@@ -24,7 +24,7 @@ function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm hover:text-white transition-colors duration-200"
-              href="github.ayush.it"
+              href="https://github.com/Ayu-Rawat"
               >
                 Github
               </a>
@@ -32,7 +32,8 @@ function Footer() {
             <li>
               <a
                 className="text-sm hover:text-white transition-colors duration-200"
-                href='instagram.ayush.it'
+                href='https://www.instagram.com/__ayush5506__/'
+                target="_blank"
               >
                 Instagram
               </a>
@@ -41,6 +42,7 @@ function Footer() {
               <a
                 className="text-sm hover:text-white transition-colors duration-200"
                 href='https://github.com/Ayu-Rawat/blogging-website'
+                target="_blank"
               >
                 Source Code
               </a>
