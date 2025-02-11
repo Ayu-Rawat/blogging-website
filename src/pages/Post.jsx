@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import appwriteService from "../appwrite/config";
+import authService from "../appwrite/auth";
 import { Button, Container } from "../components";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
@@ -11,10 +12,25 @@ export default function Post() {
     const navigate = useNavigate();
     const [isVideo, setIsVideo] = useState(false);
     const [fileUrl, setFileUrl] = useState('');
+    const [userSession, setUserSession] = useState(null);
 
-    const userData = useSelector((state) => state.auth.userData);
+    useEffect(() => {
+        async function fetchUserSession() {
+            try {
+                const user = await authService.getCurrentUser();
+                if (user) {
+                    setUserSession(user);
+                } else {
+                    console.error("No active session found. Redirecting to login...");
+                    navigate("/login");
+                }
+            } catch (error) {
+                console.error("Error fetching user session:", error);
+            }
+        }
 
-    const isAuthor = post && userData ? post.userId === userData.$id : false;
+        fetchUserSession();
+    }, [navigate]);
 
     useEffect(() => {
         if (slug) {
@@ -24,6 +40,8 @@ export default function Post() {
             });
         } else navigate("/");
     }, [slug, navigate]);
+
+    const isAuthor = post && userSession ? post.userId === userSession.$id : false;
 
     const deletePost = () => {
         appwriteService.deletePost(post.$id).then((status) => {
