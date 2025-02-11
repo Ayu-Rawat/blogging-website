@@ -21,30 +21,51 @@ export default function PostForm({ post }) {
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
 
+
     const submit = async (data) => {
-        setLoading(true);
-        
+        setLoading(true);  // Set loading to true when submission starts
+
         try {
-            // Ensure user session is refreshed
             const updatedUser = await authService.getCurrentUser();
             if (!updatedUser) {
                 console.error("User session not found. Try logging in again.");
                 return;
             }
     
-            let file = await appwriteService.uploadFile(data.image[0]);
-            if (file) {
-                data.featuredImage = file.$id;
-                const dbPost = await appwriteService.createPost({ ...data, userId: updatedUser.$id });
-    
+            let file;
+
+            if (post) {
+                file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
+
+                if (file) {
+                    appwriteService.deleteFile(post.featuredImage);
+                }
+
+                const dbPost = await appwriteService.updatePost(post.$id, {
+                    ...data,
+                    featuredImage: file ? file.$id : undefined,
+                });
+
                 if (dbPost) {
                     navigate(`/post/${dbPost.$id}`);
+                }
+            } else {
+                file = await appwriteService.uploadFile(data.image[0]);
+
+                if (file) {
+                    const fileId = file.$id;
+                    data.featuredImage = fileId;
+                    const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id });
+
+                    if (dbPost) {
+                        navigate(`/post/${dbPost.$id}`);
+                    }
                 }
             }
         } catch (error) {
             console.error("Error during post submission:", error);
         } finally {
-            setLoading(false);
+            setLoading(false); 
         }
     };
 

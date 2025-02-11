@@ -10,13 +10,13 @@ export default function NotFound() {
         </p>
         <div className="flex justify-center space-x-4">
           <Link
-            to="/add-post"
+            to="/add-posts"
             className="px-4 py-2 text-sm font-medium text-white bg-gray-800 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700"
           >
             Add Blog
           </Link>
           <Link
-            to="/all-post"
+            to="/all-posts"
             className="px-4 py-2 text-sm font-medium text-white bg-gray-800 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 inline-flex items-center"
           >
             See all Post

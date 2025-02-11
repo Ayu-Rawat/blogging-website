@@ -16,7 +16,7 @@ function EditPost() {
                 }
             })
         } else {
-            navigate('/')
+            navigate('/your-posts')
         }
     }, [slug, navigate])
   return post ? (
