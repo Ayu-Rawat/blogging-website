@@ -17,34 +17,25 @@ export default function PostForm({ post }) {
         },
     });
 
-    const [loading, setLoading] = useState(false); 
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
 
-
     const submit = async (data) => {
-        setLoading(true);  // Set loading to true when submission starts
+        setLoading(true);
 
         try {
+            // Ensure user session is refreshed
             const updatedUser = await authService.getCurrentUser();
             if (!updatedUser) {
                 console.error("User session not found. Try logging in again.");
                 return;
             }
-    
-            let file;
 
-            if (post) {
-                file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
-
-                if (file) {
-                    appwriteService.deleteFile(post.featuredImage);
-                }
-
-                const dbPost = await appwriteService.updatePost(post.$id, {
-                    ...data,
-                    featuredImage: file ? file.$id : undefined,
-                });
+            let file = await appwriteService.uploadFile(data.image[0]);
+            if (file) {
+                data.featuredImage = file.$id;
+                const dbPost = await appwriteService.createPost({ ...data, userId: updatedUser?.$id });
 
                 if (dbPost) {
                     navigate(`/post/${dbPost.$id}`);
@@ -65,7 +56,7 @@ export default function PostForm({ post }) {
         } catch (error) {
             console.error("Error during post submission:", error);
         } finally {
-            setLoading(false); 
+            setLoading(false);
         }
     };
 
@@ -137,7 +128,7 @@ export default function PostForm({ post }) {
                 )}
                 <Button type="submit" disabled={loading} bgColor={post ? "bg-green-500" : undefined} className="w-full">
                     {loading ? (
-                        <span>Loading...</span> 
+                        <span>Loading...</span>
                     ) : post ? (
                         "Update"
                     ) : (
@@ -148,5 +139,3 @@ export default function PostForm({ post }) {
         </form>
     );
 }
-
-
